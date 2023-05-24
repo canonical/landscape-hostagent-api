@@ -6,7 +6,7 @@ import hostagent_pb2 as hostagent__pb2
 
 
 class LandscapeHostAgentStub(object):
-    """LandScapeHostAgent service.
+    """LandscapeHostAgent service.
     The connection is made from the hostagent (client) to the landscape server (sass or on-prem).
     """
 
@@ -18,13 +18,13 @@ class LandscapeHostAgentStub(object):
         """
         self.Connect = channel.stream_stream(
                 '/landscapehostagentapi.LandscapeHostAgent/Connect',
-                request_serializer=hostagent__pb2.Instances.SerializeToString,
+                request_serializer=hostagent__pb2.HostAgentInfo.SerializeToString,
                 response_deserializer=hostagent__pb2.Commands.FromString,
                 )
 
 
 class LandscapeHostAgentServicer(object):
-    """LandScapeHostAgent service.
+    """LandscapeHostAgent service.
     The connection is made from the hostagent (client) to the landscape server (sass or on-prem).
     """
 
@@ -39,7 +39,7 @@ def add_LandscapeHostAgentServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Connect': grpc.stream_stream_rpc_method_handler(
                     servicer.Connect,
-                    request_deserializer=hostagent__pb2.Instances.FromString,
+                    request_deserializer=hostagent__pb2.HostAgentInfo.FromString,
                     response_serializer=hostagent__pb2.Commands.SerializeToString,
             ),
     }
@@ -50,7 +50,7 @@ def add_LandscapeHostAgentServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class LandscapeHostAgent(object):
-    """LandScapeHostAgent service.
+    """LandscapeHostAgent service.
     The connection is made from the hostagent (client) to the landscape server (sass or on-prem).
     """
 
@@ -66,7 +66,7 @@ class LandscapeHostAgent(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.stream_stream(request_iterator, target, '/landscapehostagentapi.LandscapeHostAgent/Connect',
-            hostagent__pb2.Instances.SerializeToString,
+            hostagent__pb2.HostAgentInfo.SerializeToString,
             hostagent__pb2.Commands.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

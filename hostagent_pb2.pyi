@@ -54,7 +54,7 @@ class Commands(_message.Message):
     uninstall: Commands.Uninstall
     def __init__(self, start: _Optional[_Union[Commands.Start, _Mapping]] = ..., stop: _Optional[_Union[Commands.Stop, _Mapping]] = ..., install: _Optional[_Union[Commands.Install, _Mapping]] = ..., uninstall: _Optional[_Union[Commands.Uninstall, _Mapping]] = ..., set_default: _Optional[_Union[Commands.SetDefault, _Mapping]] = ..., shutdown_host: _Optional[_Union[Commands.ShutdownHost, _Mapping]] = ...) -> None: ...
 
-class Instances(_message.Message):
+class HostAgentInfo(_message.Message):
     __slots__ = ["hostname", "id", "instances", "token"]
     class InstanceInfo(_message.Message):
         __slots__ = ["id", "instance_state", "name", "version_id"]
@@ -73,9 +73,9 @@ class Instances(_message.Message):
     TOKEN_FIELD_NUMBER: _ClassVar[int]
     hostname: str
     id: str
-    instances: _containers.RepeatedCompositeFieldContainer[Instances.InstanceInfo]
+    instances: _containers.RepeatedCompositeFieldContainer[HostAgentInfo.InstanceInfo]
     token: str
-    def __init__(self, token: _Optional[str] = ..., id: _Optional[str] = ..., hostname: _Optional[str] = ..., instances: _Optional[_Iterable[_Union[Instances.InstanceInfo, _Mapping]]] = ...) -> None: ...
+    def __init__(self, token: _Optional[str] = ..., id: _Optional[str] = ..., hostname: _Optional[str] = ..., instances: _Optional[_Iterable[_Union[HostAgentInfo.InstanceInfo, _Mapping]]] = ...) -> None: ...
 
 class InstanceState(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = []

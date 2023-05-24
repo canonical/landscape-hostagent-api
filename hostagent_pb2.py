@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fhostagent.proto\x12\x15landscapehostagentapi\"\xf6\x01\n\tInstances\x12\r\n\x05token\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12@\n\tinstances\x18\x04 \x03(\x0b\x32-.landscapehostagentapi.Instances.InstanceInfo\x1az\n\x0cInstanceInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x12\n\nversion_id\x18\x03 \x01(\t\x12<\n\x0einstance_state\x18\x04 \x01(\x0e\x32$.landscapehostagentapi.InstanceState\"\xae\x04\n\x08\x43ommands\x12\x36\n\x05start\x18\x01 \x01(\x0b\x32%.landscapehostagentapi.Commands.StartH\x00\x12\x34\n\x04stop\x18\x02 \x01(\x0b\x32$.landscapehostagentapi.Commands.StopH\x00\x12:\n\x07install\x18\x03 \x01(\x0b\x32\'.landscapehostagentapi.Commands.InstallH\x00\x12>\n\tuninstall\x18\x04 \x01(\x0b\x32).landscapehostagentapi.Commands.UninstallH\x00\x12\x41\n\x0bset_default\x18\x05 \x01(\x0b\x32*.landscapehostagentapi.Commands.SetDefaultH\x00\x12\x45\n\rshutdown_host\x18\x06 \x01(\x0b\x32,.landscapehostagentapi.Commands.ShutdownHostH\x00\x1a\x13\n\x05Start\x12\n\n\x02id\x18\x01 \x01(\t\x1a\x12\n\x04Stop\x12\n\n\x02id\x18\x01 \x01(\t\x1a;\n\x07Install\x12\n\n\x02id\x18\x01 \x01(\t\x12\x16\n\tcloudinit\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0c\n\n_cloudinit\x1a\x17\n\tUninstall\x12\n\n\x02id\x18\x01 \x01(\t\x1a\x18\n\nSetDefault\x12\n\n\x02id\x18\x01 \x01(\t\x1a\x0e\n\x0cShutdownHostB\x05\n\x03\x63md*)\n\rInstanceState\x12\x0b\n\x07Stopped\x10\x00\x12\x0b\n\x07Running\x10\x01\x32h\n\x12LandscapeHostAgent\x12R\n\x07\x43onnect\x12 .landscapehostagentapi.Instances\x1a\x1f.landscapehostagentapi.Commands\"\x00(\x01\x30\x01\x42.Z,github.com/canonical/landscape-hostagent-apib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fhostagent.proto\x12\x15landscapehostagentapi\"\xfe\x01\n\rHostAgentInfo\x12\r\n\x05token\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x44\n\tinstances\x18\x04 \x03(\x0b\x32\x31.landscapehostagentapi.HostAgentInfo.InstanceInfo\x1az\n\x0cInstanceInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x12\n\nversion_id\x18\x03 \x01(\t\x12<\n\x0einstance_state\x18\x04 \x01(\x0e\x32$.landscapehostagentapi.InstanceState\"\xae\x04\n\x08\x43ommands\x12\x36\n\x05start\x18\x01 \x01(\x0b\x32%.landscapehostagentapi.Commands.StartH\x00\x12\x34\n\x04stop\x18\x02 \x01(\x0b\x32$.landscapehostagentapi.Commands.StopH\x00\x12:\n\x07install\x18\x03 \x01(\x0b\x32\'.landscapehostagentapi.Commands.InstallH\x00\x12>\n\tuninstall\x18\x04 \x01(\x0b\x32).landscapehostagentapi.Commands.UninstallH\x00\x12\x41\n\x0bset_default\x18\x05 \x01(\x0b\x32*.landscapehostagentapi.Commands.SetDefaultH\x00\x12\x45\n\rshutdown_host\x18\x06 \x01(\x0b\x32,.landscapehostagentapi.Commands.ShutdownHostH\x00\x1a\x13\n\x05Start\x12\n\n\x02id\x18\x01 \x01(\t\x1a\x12\n\x04Stop\x12\n\n\x02id\x18\x01 \x01(\t\x1a;\n\x07Install\x12\n\n\x02id\x18\x01 \x01(\t\x12\x16\n\tcloudinit\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\x0c\n\n_cloudinit\x1a\x17\n\tUninstall\x12\n\n\x02id\x18\x01 \x01(\t\x1a\x18\n\nSetDefault\x12\n\n\x02id\x18\x01 \x01(\t\x1a\x0e\n\x0cShutdownHostB\x05\n\x03\x63md*)\n\rInstanceState\x12\x0b\n\x07Stopped\x10\x00\x12\x0b\n\x07Running\x10\x01\x32l\n\x12LandscapeHostAgent\x12V\n\x07\x43onnect\x12$.landscapehostagentapi.HostAgentInfo\x1a\x1f.landscapehostagentapi.Commands\"\x00(\x01\x30\x01\x42.Z,github.com/canonical/landscape-hostagent-apib\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'hostagent_pb2', globals())
@@ -21,26 +21,26 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z,github.com/canonical/landscape-hostagent-api'
-  _INSTANCESTATE._serialized_start=852
-  _INSTANCESTATE._serialized_end=893
-  _INSTANCES._serialized_start=43
-  _INSTANCES._serialized_end=289
-  _INSTANCES_INSTANCEINFO._serialized_start=167
-  _INSTANCES_INSTANCEINFO._serialized_end=289
-  _COMMANDS._serialized_start=292
-  _COMMANDS._serialized_end=850
-  _COMMANDS_START._serialized_start=676
-  _COMMANDS_START._serialized_end=695
-  _COMMANDS_STOP._serialized_start=697
-  _COMMANDS_STOP._serialized_end=715
-  _COMMANDS_INSTALL._serialized_start=717
-  _COMMANDS_INSTALL._serialized_end=776
-  _COMMANDS_UNINSTALL._serialized_start=778
-  _COMMANDS_UNINSTALL._serialized_end=801
-  _COMMANDS_SETDEFAULT._serialized_start=803
-  _COMMANDS_SETDEFAULT._serialized_end=827
-  _COMMANDS_SHUTDOWNHOST._serialized_start=829
-  _COMMANDS_SHUTDOWNHOST._serialized_end=843
-  _LANDSCAPEHOSTAGENT._serialized_start=895
-  _LANDSCAPEHOSTAGENT._serialized_end=999
+  _INSTANCESTATE._serialized_start=860
+  _INSTANCESTATE._serialized_end=901
+  _HOSTAGENTINFO._serialized_start=43
+  _HOSTAGENTINFO._serialized_end=297
+  _HOSTAGENTINFO_INSTANCEINFO._serialized_start=175
+  _HOSTAGENTINFO_INSTANCEINFO._serialized_end=297
+  _COMMANDS._serialized_start=300
+  _COMMANDS._serialized_end=858
+  _COMMANDS_START._serialized_start=684
+  _COMMANDS_START._serialized_end=703
+  _COMMANDS_STOP._serialized_start=705
+  _COMMANDS_STOP._serialized_end=723
+  _COMMANDS_INSTALL._serialized_start=725
+  _COMMANDS_INSTALL._serialized_end=784
+  _COMMANDS_UNINSTALL._serialized_start=786
+  _COMMANDS_UNINSTALL._serialized_end=809
+  _COMMANDS_SETDEFAULT._serialized_start=811
+  _COMMANDS_SETDEFAULT._serialized_end=835
+  _COMMANDS_SHUTDOWNHOST._serialized_start=837
+  _COMMANDS_SHUTDOWNHOST._serialized_end=851
+  _LANDSCAPEHOSTAGENT._serialized_start=903
+  _LANDSCAPEHOSTAGENT._serialized_end=1011
 # @@protoc_insertion_point(module_scope)
