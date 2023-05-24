@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "github.com/canonical/landscape-hostagent-api";
+package landscapehostagentapi;
+
+// LandScapeHostAgent service.
+// The connection is made from the hostagent (client) to the landscape server (sass or on-prem).
+service LandscapeHostAgent {
+    rpc Connect (stream Instances) returns (stream Commands) {}
+}
+
+
+message Instances {
+    optional string token = 1;             // token will only be set on first connection message. Discared on on-prem landscape server.
+    optional string id = 2;                // id will only be set on first connection message. Discared on on-prem landscape server.
+    repeated InstanceInfo instances = 3;   // instances are all the machine instances registered on the machine
+
+    // InstanceInfo gather all the information of a given instance.
+    message InstanceInfo {
+        string id = 1;
+        string name = 2;                     // name is the hostname of the instance.
+        string version_id = 3;               // version_id string as in VERSION_ID in /etc/os-release
+        InstanceState instance_state = 4;    // instance_state are the defined states of the instances.
+        optional string host_hostname = 5;   // host_hostname is literally the name of the host.
+    }
+}
+
+// InstanceState report the supported states of an instance communicated by the agent.
+enum InstanceState {
+    Stopped = 0;
+    Running = 1;
+}
+
+// Commands are one of command that landscape can send via its stream to the host agent.
+// The commands themselves are self-explanatory or specified.
+message Commands {
+    // only one command can be passed at a time.
+    oneof cmd {
+        Start start = 1;
+        Stop stop = 2;
+        Install install = 3;
+        Uninstall uninstall = 4;
+        SetDefault set_default = 5;
+        ShutdownHost shutdown_host = 6;
+    }
+
+    message Start {
+        string id = 1;
+    }
+    message Stop {
+        string id = 1;
+    }
+    message Install {
+        string id = 1;
+        optional string cloudinit = 2;  // cloudinit is the yaml configuration to optionally pass to an instance.
+    }
+    message Uninstall {
+        string id = 1;
+        }
+    // SetDefault changes the default instance on the host.
+    message SetDefault {
+        string id = 1;
+    }
+    // ShutdownHost force a shut down of the agent/controller from landscape perspective (it may autorestart).
+    message ShutdownHost{}
+}
