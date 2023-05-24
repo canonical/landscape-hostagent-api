@@ -3,14 +3,14 @@ syntax = "proto3";
 option go_package = "github.com/canonical/landscape-hostagent-api";
 package landscapehostagentapi;
 
-// LandScapeHostAgent service.
+// LandscapeHostAgent service.
 // The connection is made from the hostagent (client) to the landscape server (sass or on-prem).
 service LandscapeHostAgent {
-    rpc Connect (stream Instances) returns (stream Commands) {}
+    rpc Connect (stream HostAgentInfo) returns (stream Commands) {}
 }
 
 
-message Instances {
+message HostAgentInfo {
     string token = 1;                      // token corresponds to the Pro token subscription. Discared on on-prem landscape server.
     string id = 2;                         // id is a combination of machine + user id hashed.
     string hostname = 3;                   // hostname is literally the name of the host itself.
