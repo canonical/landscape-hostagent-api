@@ -31,9 +31,9 @@ enum InstanceState {
     Running = 1;
 }
 
-// Commands are one of command that landscape can send via its stream to the host agent.
-// The commands themselves are self-explanatory or specified.
-message Commands {
+// Command is an instruction that landscape can send via its stream to the host agent.
+// The command is self-explanatory or specified.
+message Command {
     // only one command can be passed at a time.
     oneof cmd {
         Start start = 1;
