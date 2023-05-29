@@ -19,7 +19,7 @@ class LandscapeHostAgentStub(object):
         self.Connect = channel.stream_stream(
                 '/landscapehostagentapi.LandscapeHostAgent/Connect',
                 request_serializer=hostagent__pb2.HostAgentInfo.SerializeToString,
-                response_deserializer=hostagent__pb2.Commands.FromString,
+                response_deserializer=hostagent__pb2.Command.FromString,
                 )
 
 
@@ -40,7 +40,7 @@ def add_LandscapeHostAgentServicer_to_server(servicer, server):
             'Connect': grpc.stream_stream_rpc_method_handler(
                     servicer.Connect,
                     request_deserializer=hostagent__pb2.HostAgentInfo.FromString,
-                    response_serializer=hostagent__pb2.Commands.SerializeToString,
+                    response_serializer=hostagent__pb2.Command.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -67,6 +67,6 @@ class LandscapeHostAgent(object):
             metadata=None):
         return grpc.experimental.stream_stream(request_iterator, target, '/landscapehostagentapi.LandscapeHostAgent/Connect',
             hostagent__pb2.HostAgentInfo.SerializeToString,
-            hostagent__pb2.Commands.FromString,
+            hostagent__pb2.Command.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

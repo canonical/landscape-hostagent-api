@@ -48,7 +48,7 @@ func (c *landscapeHostAgentClient) Connect(ctx context.Context, opts ...grpc.Cal
 
 type LandscapeHostAgent_ConnectClient interface {
 	Send(*HostAgentInfo) error
-	Recv() (*Commands, error)
+	Recv() (*Command, error)
 	grpc.ClientStream
 }
 
@@ -60,8 +60,8 @@ func (x *landscapeHostAgentConnectClient) Send(m *HostAgentInfo) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *landscapeHostAgentConnectClient) Recv() (*Commands, error) {
-	m := new(Commands)
+func (x *landscapeHostAgentConnectClient) Recv() (*Command, error) {
+	m := new(Command)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func _LandscapeHostAgent_Connect_Handler(srv interface{}, stream grpc.ServerStre
 }
 
 type LandscapeHostAgent_ConnectServer interface {
-	Send(*Commands) error
+	Send(*Command) error
 	Recv() (*HostAgentInfo, error)
 	grpc.ServerStream
 }
@@ -110,7 +110,7 @@ type landscapeHostAgentConnectServer struct {
 	grpc.ServerStream
 }
 
-func (x *landscapeHostAgentConnectServer) Send(m *Commands) error {
+func (x *landscapeHostAgentConnectServer) Send(m *Command) error {
 	return x.ServerStream.SendMsg(m)
 }
 

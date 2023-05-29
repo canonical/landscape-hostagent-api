@@ -8,7 +8,7 @@ DESCRIPTOR: _descriptor.FileDescriptor
 Running: InstanceState
 Stopped: InstanceState
 
-class Commands(_message.Message):
+class Command(_message.Message):
     __slots__ = ["install", "set_default", "shutdown_host", "start", "stop", "uninstall"]
     class Install(_message.Message):
         __slots__ = ["cloudinit", "id"]
@@ -46,13 +46,13 @@ class Commands(_message.Message):
     START_FIELD_NUMBER: _ClassVar[int]
     STOP_FIELD_NUMBER: _ClassVar[int]
     UNINSTALL_FIELD_NUMBER: _ClassVar[int]
-    install: Commands.Install
-    set_default: Commands.SetDefault
-    shutdown_host: Commands.ShutdownHost
-    start: Commands.Start
-    stop: Commands.Stop
-    uninstall: Commands.Uninstall
-    def __init__(self, start: _Optional[_Union[Commands.Start, _Mapping]] = ..., stop: _Optional[_Union[Commands.Stop, _Mapping]] = ..., install: _Optional[_Union[Commands.Install, _Mapping]] = ..., uninstall: _Optional[_Union[Commands.Uninstall, _Mapping]] = ..., set_default: _Optional[_Union[Commands.SetDefault, _Mapping]] = ..., shutdown_host: _Optional[_Union[Commands.ShutdownHost, _Mapping]] = ...) -> None: ...
+    install: Command.Install
+    set_default: Command.SetDefault
+    shutdown_host: Command.ShutdownHost
+    start: Command.Start
+    stop: Command.Stop
+    uninstall: Command.Uninstall
+    def __init__(self, start: _Optional[_Union[Command.Start, _Mapping]] = ..., stop: _Optional[_Union[Command.Stop, _Mapping]] = ..., install: _Optional[_Union[Command.Install, _Mapping]] = ..., uninstall: _Optional[_Union[Command.Uninstall, _Mapping]] = ..., set_default: _Optional[_Union[Command.SetDefault, _Mapping]] = ..., shutdown_host: _Optional[_Union[Command.ShutdownHost, _Mapping]] = ...) -> None: ...
 
 class HostAgentInfo(_message.Message):
     __slots__ = ["hostname", "id", "instances", "token"]
