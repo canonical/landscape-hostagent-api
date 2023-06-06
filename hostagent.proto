@@ -12,7 +12,7 @@ service LandscapeHostAgent {
 
 message HostAgentInfo {
     string token = 1;                      // token corresponds to the Pro token subscription. Discared on on-prem landscape server.
-    string id = 2;                         // id is a combination of machine + user id hashed.
+    string uid = 2;                        // uid is empty on the first request if the host never contacted landscape. Landscape generates one for the hostagent to send it back with each transaction.
     string hostname = 3;                   // hostname is literally the name of the host itself.
     repeated InstanceInfo instances = 4;   // instances are all the machine instances registered on the machine.
 
@@ -36,14 +36,18 @@ enum InstanceState {
 message Command {
     // only one command can be passed at a time.
     oneof cmd {
-        Start start = 1;
-        Stop stop = 2;
-        Install install = 3;
-        Uninstall uninstall = 4;
-        SetDefault set_default = 5;
-        ShutdownHost shutdown_host = 6;
+        AssignHost assign_host = 1;
+        Start start = 2;
+        Stop stop = 3;
+        Install install = 4;
+        Uninstall uninstall = 5;
+        SetDefault set_default = 6;
+        ShutdownHost shutdown_host = 7;
     }
 
+    message AssignHost {
+        string uid = 1;
+    }
     message Start {
         string id = 1;
     }
