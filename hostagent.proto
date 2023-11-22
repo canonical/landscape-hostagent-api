@@ -16,6 +16,9 @@ message HostAgentInfo {
     string hostname = 3;                   // hostname is literally the name of the host itself.
     repeated InstanceInfo instances = 4;   // instances are all the machine instances registered on the machine.
 
+    string account_name = 5;                // account_name is the account used in Landscape SaaS.
+    optional string registration_key = 6;   // registration_key is an optional account-wide key used to register clients.
+
     // InstanceInfo gather all the information of a given instance.
     message InstanceInfo {
         string id = 1;
