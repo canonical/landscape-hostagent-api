@@ -20,7 +20,7 @@ message HostAgentInfo {
     optional string registration_key = 6;   // registration_key is an optional account-wide key used to register clients.
 
     optional string default_instance_id = 7; // default_instance_id is the id of the default instance.
-                                             // The default instance will be empty if there are no instances
+                                             // The default instance will be empty if there are no instances.
                                              // The default instance will not be in the instances list if it is not managed by the host agent.
 
     // InstanceInfo gather all the information of a given instance.
