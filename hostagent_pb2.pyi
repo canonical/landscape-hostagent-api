@@ -7,16 +7,16 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class InstanceState(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
-    __slots__ = []
+    __slots__ = ()
     Stopped: _ClassVar[InstanceState]
     Running: _ClassVar[InstanceState]
 Stopped: InstanceState
 Running: InstanceState
 
 class HostAgentInfo(_message.Message):
-    __slots__ = ["token", "uid", "hostname", "instances", "account_name", "registration_key"]
+    __slots__ = ("token", "uid", "hostname", "instances", "account_name", "registration_key", "default_instance_id")
     class InstanceInfo(_message.Message):
-        __slots__ = ["id", "name", "version_id", "instance_state"]
+        __slots__ = ("id", "name", "version_id", "instance_state")
         ID_FIELD_NUMBER: _ClassVar[int]
         NAME_FIELD_NUMBER: _ClassVar[int]
         VERSION_ID_FIELD_NUMBER: _ClassVar[int]
@@ -32,50 +32,52 @@ class HostAgentInfo(_message.Message):
     INSTANCES_FIELD_NUMBER: _ClassVar[int]
     ACCOUNT_NAME_FIELD_NUMBER: _ClassVar[int]
     REGISTRATION_KEY_FIELD_NUMBER: _ClassVar[int]
+    DEFAULT_INSTANCE_ID_FIELD_NUMBER: _ClassVar[int]
     token: str
     uid: str
     hostname: str
     instances: _containers.RepeatedCompositeFieldContainer[HostAgentInfo.InstanceInfo]
     account_name: str
     registration_key: str
-    def __init__(self, token: _Optional[str] = ..., uid: _Optional[str] = ..., hostname: _Optional[str] = ..., instances: _Optional[_Iterable[_Union[HostAgentInfo.InstanceInfo, _Mapping]]] = ..., account_name: _Optional[str] = ..., registration_key: _Optional[str] = ...) -> None: ...
+    default_instance_id: str
+    def __init__(self, token: _Optional[str] = ..., uid: _Optional[str] = ..., hostname: _Optional[str] = ..., instances: _Optional[_Iterable[_Union[HostAgentInfo.InstanceInfo, _Mapping]]] = ..., account_name: _Optional[str] = ..., registration_key: _Optional[str] = ..., default_instance_id: _Optional[str] = ...) -> None: ...
 
 class Command(_message.Message):
-    __slots__ = ["assign_host", "start", "stop", "install", "uninstall", "set_default", "shutdown_host"]
+    __slots__ = ("assign_host", "start", "stop", "install", "uninstall", "set_default", "shutdown_host")
     class AssignHost(_message.Message):
-        __slots__ = ["uid"]
+        __slots__ = ("uid",)
         UID_FIELD_NUMBER: _ClassVar[int]
         uid: str
         def __init__(self, uid: _Optional[str] = ...) -> None: ...
     class Start(_message.Message):
-        __slots__ = ["id"]
+        __slots__ = ("id",)
         ID_FIELD_NUMBER: _ClassVar[int]
         id: str
         def __init__(self, id: _Optional[str] = ...) -> None: ...
     class Stop(_message.Message):
-        __slots__ = ["id"]
+        __slots__ = ("id",)
         ID_FIELD_NUMBER: _ClassVar[int]
         id: str
         def __init__(self, id: _Optional[str] = ...) -> None: ...
     class Install(_message.Message):
-        __slots__ = ["id", "cloudinit"]
+        __slots__ = ("id", "cloudinit")
         ID_FIELD_NUMBER: _ClassVar[int]
         CLOUDINIT_FIELD_NUMBER: _ClassVar[int]
         id: str
         cloudinit: str
         def __init__(self, id: _Optional[str] = ..., cloudinit: _Optional[str] = ...) -> None: ...
     class Uninstall(_message.Message):
-        __slots__ = ["id"]
+        __slots__ = ("id",)
         ID_FIELD_NUMBER: _ClassVar[int]
         id: str
         def __init__(self, id: _Optional[str] = ...) -> None: ...
     class SetDefault(_message.Message):
-        __slots__ = ["id"]
+        __slots__ = ("id",)
         ID_FIELD_NUMBER: _ClassVar[int]
         id: str
         def __init__(self, id: _Optional[str] = ...) -> None: ...
     class ShutdownHost(_message.Message):
-        __slots__ = []
+        __slots__ = ()
         def __init__(self) -> None: ...
     ASSIGN_HOST_FIELD_NUMBER: _ClassVar[int]
     START_FIELD_NUMBER: _ClassVar[int]
