@@ -60,12 +60,14 @@ class Command(_message.Message):
         id: str
         def __init__(self, id: _Optional[str] = ...) -> None: ...
     class Install(_message.Message):
-        __slots__ = ("id", "cloudinit")
+        __slots__ = ("id", "cloudinit", "rootfsURL")
         ID_FIELD_NUMBER: _ClassVar[int]
         CLOUDINIT_FIELD_NUMBER: _ClassVar[int]
+        ROOTFSURL_FIELD_NUMBER: _ClassVar[int]
         id: str
         cloudinit: str
-        def __init__(self, id: _Optional[str] = ..., cloudinit: _Optional[str] = ...) -> None: ...
+        rootfsURL: str
+        def __init__(self, id: _Optional[str] = ..., cloudinit: _Optional[str] = ..., rootfsURL: _Optional[str] = ...) -> None: ...
     class Uninstall(_message.Message):
         __slots__ = ("id",)
         ID_FIELD_NUMBER: _ClassVar[int]
