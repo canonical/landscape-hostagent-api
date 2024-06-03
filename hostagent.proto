@@ -64,6 +64,12 @@ message Command {
     message Install {
         string id = 1;
         optional string cloudinit = 2;  // cloudinit is the yaml configuration to optionally pass to an instance.
+        /*
+          URL to a WSL rootfs image we will download and import from. It will be registered under "id".
+          If this entry is not set, Ubuntu Pro for WSL will download a package from the Microsoft store
+          matching WSL distribution name as available in wsl --install.
+        */
+        optional string rootfsURL = 3;
     }
     message Uninstall {
         string id = 1;
