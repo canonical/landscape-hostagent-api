@@ -29,6 +29,7 @@ message HostAgentInfo {
         string name = 2;                     // name is the hostname of the instance.
         string version_id = 3;               // version_id string as in VERSION_ID in /etc/os-release
         InstanceState instance_state = 4;    // instance_state are the defined states of the instances.
+        string request_id = 5;               // the value Landscape Server provided when the instance was installed
     }
 }
 
@@ -70,6 +71,12 @@ message Command {
           matching WSL distribution name as available in wsl --install.
         */
         optional string rootfsURL = 3;
+        /*
+          A uuid that Landscape Server assigns to the installation task. Landscape server will associate the installation
+          task by this uuid along with any information that it deems relevant to that installation task (profile, activity, etc.).
+          This same string should be reported back as part of the instance info.
+        */
+        optional string request_id = 4;
     }
     message Uninstall {
         string id = 1;
