@@ -10,8 +10,21 @@ class InstanceState(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     Stopped: _ClassVar[InstanceState]
     Running: _ClassVar[InstanceState]
+
+class CommandState(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    Queued: _ClassVar[CommandState]
+    InProgress: _ClassVar[CommandState]
+    Completed: _ClassVar[CommandState]
 Stopped: InstanceState
 Running: InstanceState
+Queued: CommandState
+InProgress: CommandState
+Completed: CommandState
+
+class Empty(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class HostAgentInfo(_message.Message):
     __slots__ = ("token", "uid", "hostname", "instances", "account_name", "registration_key", "default_instance_id")
@@ -43,7 +56,7 @@ class HostAgentInfo(_message.Message):
     def __init__(self, token: _Optional[str] = ..., uid: _Optional[str] = ..., hostname: _Optional[str] = ..., instances: _Optional[_Iterable[_Union[HostAgentInfo.InstanceInfo, _Mapping]]] = ..., account_name: _Optional[str] = ..., registration_key: _Optional[str] = ..., default_instance_id: _Optional[str] = ...) -> None: ...
 
 class Command(_message.Message):
-    __slots__ = ("assign_host", "start", "stop", "install", "uninstall", "set_default", "shutdown_host")
+    __slots__ = ("assign_host", "start", "stop", "install", "uninstall", "set_default", "shutdown_host", "request_id")
     class AssignHost(_message.Message):
         __slots__ = ("uid",)
         UID_FIELD_NUMBER: _ClassVar[int]
@@ -88,6 +101,7 @@ class Command(_message.Message):
     UNINSTALL_FIELD_NUMBER: _ClassVar[int]
     SET_DEFAULT_FIELD_NUMBER: _ClassVar[int]
     SHUTDOWN_HOST_FIELD_NUMBER: _ClassVar[int]
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
     assign_host: Command.AssignHost
     start: Command.Start
     stop: Command.Stop
@@ -95,4 +109,15 @@ class Command(_message.Message):
     uninstall: Command.Uninstall
     set_default: Command.SetDefault
     shutdown_host: Command.ShutdownHost
-    def __init__(self, assign_host: _Optional[_Union[Command.AssignHost, _Mapping]] = ..., start: _Optional[_Union[Command.Start, _Mapping]] = ..., stop: _Optional[_Union[Command.Stop, _Mapping]] = ..., install: _Optional[_Union[Command.Install, _Mapping]] = ..., uninstall: _Optional[_Union[Command.Uninstall, _Mapping]] = ..., set_default: _Optional[_Union[Command.SetDefault, _Mapping]] = ..., shutdown_host: _Optional[_Union[Command.ShutdownHost, _Mapping]] = ...) -> None: ...
+    request_id: str
+    def __init__(self, assign_host: _Optional[_Union[Command.AssignHost, _Mapping]] = ..., start: _Optional[_Union[Command.Start, _Mapping]] = ..., stop: _Optional[_Union[Command.Stop, _Mapping]] = ..., install: _Optional[_Union[Command.Install, _Mapping]] = ..., uninstall: _Optional[_Union[Command.Uninstall, _Mapping]] = ..., set_default: _Optional[_Union[Command.SetDefault, _Mapping]] = ..., shutdown_host: _Optional[_Union[Command.ShutdownHost, _Mapping]] = ..., request_id: _Optional[str] = ...) -> None: ...
+
+class CommandStatus(_message.Message):
+    __slots__ = ("request_id", "command_state", "error")
+    REQUEST_ID_FIELD_NUMBER: _ClassVar[int]
+    COMMAND_STATE_FIELD_NUMBER: _ClassVar[int]
+    ERROR_FIELD_NUMBER: _ClassVar[int]
+    request_id: str
+    command_state: CommandState
+    error: str
+    def __init__(self, request_id: _Optional[str] = ..., command_state: _Optional[_Union[CommandState, str]] = ..., error: _Optional[str] = ...) -> None: ...
