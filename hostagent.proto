@@ -7,8 +7,10 @@ package landscapehostagentapi;
 // The connection is made from the hostagent (client) to the landscape server (sass or on-prem).
 service LandscapeHostAgent {
     rpc Connect (stream HostAgentInfo) returns (stream Command) {}
+    rpc SendCommandStatus(CommandStatus) returns (Empty) {}
 }
 
+message Empty {}
 
 message HostAgentInfo {
     string token = 1;                      // token corresponds to the Pro token subscription. Discared on on-prem landscape server.
@@ -52,6 +54,9 @@ message Command {
         ShutdownHost shutdown_host = 7;
     }
 
+    // request_id is a  unique identifier assigned by landscape to each command request.
+    string request_id = 8;
+
     message AssignHost {
         string uid = 1;
     }
@@ -80,4 +85,20 @@ message Command {
     }
     // ShutdownHost forces a shut down of the agent/controller from landscape perspective (it may autorestart).
     message ShutdownHost{}
+}
+
+// CommandState reports the current state of a command sent from Landscape
+enum CommandState {
+    Queued = 0;
+    InProgress = 1;
+    Completed = 2;
+}
+// CommandStatus is a message sent by the host agent reporting the current status of a Command.
+message CommandStatus {
+    // request_id is the unique identifier of the command request this message is about.
+    string request_id = 1;
+    // command_state is the current state of handling for the spcific command being reported.
+    CommandState command_state = 2;
+    // error is the reason of failure to complete such command or empty on the success case.
+    string error = 3;
 }
