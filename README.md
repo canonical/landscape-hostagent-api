@@ -12,7 +12,22 @@ This is the code repository for Landscape to host agent API, referencing the pro
 
 This API allows to communicates actions from Landscape to subsystems installed on a given host. You can think of VMs, containers, WSL instances… Landscape server will instruct the host agent daemon on which machines he needs up and down.
 
-This project does provides Go and Python bindings from the reference protobuf file by autogenerating them.
+This repository can generate Go and Python stubs from the protobuf ([`hostagent.proto`](./hostagent.proto)). Landscape pulls and generates the stubs itself, but you can use [`generate.sh`](./generate.sh) to generate the stubs locally.
+
+Install requirements:
+
+```sh
+sudo apt install protobuf-compiler protoc-gen-go-grpc pipx
+pipx install grpcio-tools
+pipx ensurepath
+```
+
+Then, generate the stubs: 
+
+```sh
+sudo chmod +x generate.sh
+./generate.sh
+```
 
 ## Get involved
 

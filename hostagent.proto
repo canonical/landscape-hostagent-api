@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/canonical/landscape-hostagent-api";
+option go_package = "github.com/canonical/landscape-hostagent-api;landscape_hostagent_api";
 package landscapehostagentapi;
 
 // LandscapeHostAgent service.
@@ -31,6 +31,7 @@ message HostAgentInfo {
         string name = 2;                     // name is the hostname of the instance.
         string version_id = 3;               // version_id string as in VERSION_ID in /etc/os-release
         InstanceState instance_state = 4;    // instance_state are the defined states of the instances.
+        bool created_by_landscape = 5;     // created_by_landscape is indicates this instance was created through an install command from Landscape
     }
 }
 
