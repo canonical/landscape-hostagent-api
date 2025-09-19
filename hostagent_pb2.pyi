@@ -2,7 +2,8 @@ from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
+from collections.abc import Iterable as _Iterable, Mapping as _Mapping
+from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
@@ -27,7 +28,7 @@ class Empty(_message.Message):
     def __init__(self) -> None: ...
 
 class HostAgentInfo(_message.Message):
-    __slots__ = ("token", "uid", "hostname", "instances", "account_name", "registration_key", "default_instance_id")
+    __slots__ = ("token", "uid", "hostname", "instances", "account_name", "registration_key", "default_instance_id", "unmanaged_instances")
     class InstanceInfo(_message.Message):
         __slots__ = ("id", "name", "version_id", "instance_state")
         ID_FIELD_NUMBER: _ClassVar[int]
@@ -46,6 +47,7 @@ class HostAgentInfo(_message.Message):
     ACCOUNT_NAME_FIELD_NUMBER: _ClassVar[int]
     REGISTRATION_KEY_FIELD_NUMBER: _ClassVar[int]
     DEFAULT_INSTANCE_ID_FIELD_NUMBER: _ClassVar[int]
+    UNMANAGED_INSTANCES_FIELD_NUMBER: _ClassVar[int]
     token: str
     uid: str
     hostname: str
@@ -53,7 +55,8 @@ class HostAgentInfo(_message.Message):
     account_name: str
     registration_key: str
     default_instance_id: str
-    def __init__(self, token: _Optional[str] = ..., uid: _Optional[str] = ..., hostname: _Optional[str] = ..., instances: _Optional[_Iterable[_Union[HostAgentInfo.InstanceInfo, _Mapping]]] = ..., account_name: _Optional[str] = ..., registration_key: _Optional[str] = ..., default_instance_id: _Optional[str] = ...) -> None: ...
+    unmanaged_instances: _containers.RepeatedCompositeFieldContainer[HostAgentInfo.InstanceInfo]
+    def __init__(self, token: _Optional[str] = ..., uid: _Optional[str] = ..., hostname: _Optional[str] = ..., instances: _Optional[_Iterable[_Union[HostAgentInfo.InstanceInfo, _Mapping]]] = ..., account_name: _Optional[str] = ..., registration_key: _Optional[str] = ..., default_instance_id: _Optional[str] = ..., unmanaged_instances: _Optional[_Iterable[_Union[HostAgentInfo.InstanceInfo, _Mapping]]] = ...) -> None: ...
 
 class Command(_message.Message):
     __slots__ = ("assign_host", "start", "stop", "install", "uninstall", "set_default", "shutdown_host", "request_id")
