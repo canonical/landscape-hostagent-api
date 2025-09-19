@@ -25,6 +25,9 @@ message HostAgentInfo {
                                              // The default instance will be empty if there are no instances.
                                              // The default instance will not be in the instances list if it is not managed by the host agent.
 
+    repeated InstanceInfo unmanaged_instances = 8; // unmanaged_instances are all Ubuntu instances
+                                                   // discovered by the agent without voluntary self-introduction.
+
     // InstanceInfo gather all the information of a given instance.
     message InstanceInfo {
         string id = 1;
